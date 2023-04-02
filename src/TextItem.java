@@ -92,15 +92,15 @@ public class TextItem extends SlideItem {
 		}
 	  }
 
-	private List<TextLayout> getLayouts(Graphics g, Style s, float scale) {
+	private List<TextLayout> getLayouts(Graphics graphics, Style style, float scale) {
 		List<TextLayout> layouts = new ArrayList<TextLayout>();
 
-		AttributedString attrStr = getAttributedString(s, scale);
-    	Graphics2D g2d = (Graphics2D) g;
+		AttributedString attrStr = getAttributedString(style, scale);
+    	Graphics2D g2d = (Graphics2D) graphics;
 
     	FontRenderContext frc = g2d.getFontRenderContext();
 		LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
-    	float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
+    	float wrappingWidth = (Slide.WIDTH - style.indent) * scale;
 
     	while (measurer.getPosition() < getText().length()) {
     		TextLayout layout = measurer.nextLayout(wrappingWidth);
