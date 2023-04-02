@@ -53,7 +53,6 @@ public class XMLParser extends Parser {
     }
 
 	public void loadFile(Presentation presentation, String filename) throws IOException {
-		int slideNumber, itemNumber, max = 0, maxItems = 0;
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();    
 			Document document = builder.parse(new File(filename)); //Create a JDOM document
@@ -61,20 +60,8 @@ public class XMLParser extends Parser {
 			presentation.setTitle(getTitle(doc, SHOWTITLE));
 
 			NodeList slides = doc.getElementsByTagName(SLIDE);
-			max = slides.getLength();
-			for (slideNumber = 0; slideNumber < max; slideNumber++) {
-				Element xmlSlide = (Element) slides.item(slideNumber);
-				Slide slide = new Slide();
-				slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
-				presentation.append(slide);
-				
-				NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);
-				maxItems = slideItems.getLength();
-				for (itemNumber = 0; itemNumber < maxItems; itemNumber++) {
-					Element item = (Element) slideItems.item(itemNumber);
-					loadSlideItem(slide, item);
-				}
-			}
+
+			getSlides(slides, presentation);
 		} 
 		catch (IOException iox) {
 			System.err.println(iox.toString());
@@ -85,6 +72,24 @@ public class XMLParser extends Parser {
 		catch (ParserConfigurationException pcx) {
 			System.err.println(PCE);
 		}	
+	}
+
+	protected void getSlides(NodeList slides, Presentation presentation){
+		int max = slides.getLength();
+
+		for (int slideNumber = 0; slideNumber < max; slideNumber++) {
+			Element xmlSlide = (Element) slides.item(slideNumber);
+			Slide slide = new Slide();
+			slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
+			presentation.append(slide);
+			NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);
+			int maxItems = slideItems.getLength();
+
+			for (int itemNumber = 0; itemNumber < maxItems; itemNumber++) {
+				Element item = (Element) slideItems.item(itemNumber);
+				loadSlideItem(slide, item);
+			}
+		}
 	}
 
 	protected void loadSlideItem(Slide slide, Element item) {
