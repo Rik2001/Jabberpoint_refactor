@@ -79,6 +79,6 @@ public class Slide {
 
 	//Returns the scale to draw a slide
 	private float getScale(Rectangle area) {
-		return Math.min(((float)area.width) / ((float)WIDTH), ((float)area.height) / ((float)HEIGHT));
+		return Math.min(((float)area.width) / ((float)WIDTH	), ((float)area.height) / ((float)HEIGHT));
 	}
 }
