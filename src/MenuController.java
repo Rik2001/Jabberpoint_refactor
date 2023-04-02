@@ -115,7 +115,7 @@ public class MenuController extends MenuBar {
 
 	private void loadPresentation(Presentation presentation, Frame parent){
 		presentation.clear();
-		Parser xmlParser = new XMLParser();
+		XMLParser xmlParser = new XMLParser();
 		try {
 			xmlParser.loadFile(presentation, TESTFILE);
 			presentation.setSlideNumber(0);
@@ -132,7 +132,7 @@ public class MenuController extends MenuBar {
 	}
 
 	private void savePresentation(Presentation presentation, Frame parent){
-		Parser xmlParser = new XMLParser();
+		XMLParser xmlParser = new XMLParser();
 		try {
 			xmlParser.saveFile(presentation, SAVEFILE);
 		} catch (IOException exc) {

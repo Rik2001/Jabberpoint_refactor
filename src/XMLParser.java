@@ -25,7 +25,7 @@ import org.w3c.dom.NodeList;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class XMLParser extends Parser {
+public class XMLParser {
 	
     /** Default API to use. */
     protected static final String DEFAULT_API_TO_USE = "dom";
@@ -126,11 +126,13 @@ public class XMLParser extends Parser {
 		out.print("<showtitle>");
 		out.print(presentation.getTitle());
 		out.println("</showtitle>");
+
 		for (int slideNumber=0; slideNumber<presentation.getSize(); slideNumber++) {
 			Slide slide = presentation.getSlide(slideNumber);
 			out.println("<slide>");
 			out.println("<title>" + slide.getTitle() + "</title>");
 			Vector<SlideItem> slideItems = slide.getSlideItems();
+
 			for (int itemNumber = 0; itemNumber<slideItems.size(); itemNumber++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);
 				out.print("<item kind="); 
