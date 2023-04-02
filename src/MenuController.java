@@ -115,9 +115,9 @@ public class MenuController extends MenuBar {
 
 	private void loadPresentation(Presentation presentation, Frame parent){
 		presentation.clear();
-		Accessor xmlAccessor = new XMLAccessor();
+		Parser xmlParser = new XMLParser();
 		try {
-			xmlAccessor.loadFile(presentation, TESTFILE);
+			xmlParser.loadFile(presentation, TESTFILE);
 			presentation.setSlideNumber(0);
 		} catch (IOException exc) {
 			JOptionPane.showMessageDialog(parent, IOEX + exc,
@@ -132,9 +132,9 @@ public class MenuController extends MenuBar {
 	}
 
 	private void savePresentation(Presentation presentation, Frame parent){
-		Accessor xmlAccessor = new XMLAccessor();
+		Parser xmlParser = new XMLParser();
 		try {
-			xmlAccessor.saveFile(presentation, SAVEFILE);
+			xmlParser.saveFile(presentation, SAVEFILE);
 		} catch (IOException exc) {
 			JOptionPane.showMessageDialog(parent, IOEX + exc,
 					SAVEERR, JOptionPane.ERROR_MESSAGE);
