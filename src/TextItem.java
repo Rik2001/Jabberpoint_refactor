@@ -26,26 +26,16 @@ import java.util.ArrayList;
 
 public class TextItem extends SlideItem {
 	private String text;
-	
-	private static final String EMPTYTEXT = "No Text Given";
 
-//A textitem of int level with text string
 	public TextItem(int level, String string) {
 		super(level);
 		text = string;
 	}
 
-//An empty textitem
-	public TextItem() {
-		this(0, EMPTYTEXT);
-	}
-
-//Returns the text
 	public String getText() {
 		return text == null ? "" : text;
 	}
 
-//Returns the AttributedString for the Item
 	public AttributedString getAttributedString(Style style, float scale) {
 		AttributedString attrStr = new AttributedString(getText());
 		attrStr.addAttribute(TextAttribute.FONT, style.getFont(scale), 0, text.length());
@@ -53,8 +43,8 @@ public class TextItem extends SlideItem {
 	}
 
 //Returns the bounding box of an Item
-	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
-		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
+	public Rectangle getBoundingBox(Graphics graphics, ImageObserver observer, float scale, Style myStyle) {
+		List<TextLayout> layouts = getLayouts(graphics, myStyle, scale);
 		int xsize = 0, ysize = (int) (myStyle.leading * scale);
 		Iterator<TextLayout> iterator = layouts.iterator();
 
@@ -74,13 +64,13 @@ public class TextItem extends SlideItem {
 	}
 
 //Draws the item
-	public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver o) {
+	public void draw(int x, int y, float scale, Graphics graphics, Style myStyle, ImageObserver o) {
 		if (text == null || text.length() == 0) {
 			return;
 		}
-		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
+		List<TextLayout> layouts = getLayouts(graphics, myStyle, scale);
 		Point pen = new Point(x + (int)(myStyle.indent * scale),y + (int) (myStyle.leading * scale));
-		Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D) graphics;
 		g2d.setColor(myStyle.color);
 		Iterator<TextLayout> it = layouts.iterator();
 

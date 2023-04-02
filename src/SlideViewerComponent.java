@@ -23,7 +23,7 @@ public class SlideViewerComponent extends JComponent {
 	private Presentation presentation = null; //The presentation
 	private JFrame frame = null;
 	
-	private static final long serialVersionUID = 227L;
+	private static final long SERIALVERSIONUID = 227L;
 	
 	private static final Color BGCOLOR = Color.white;
 	private static final Color COLOR = Color.black;

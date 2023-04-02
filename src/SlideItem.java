@@ -20,20 +20,14 @@ public abstract class SlideItem {
 		level = lev;
 	}
 
-	public SlideItem() {
-		this(0);
-	}
-
 //Returns the level
 	public int getLevel() {
 		return level;
 	}
 
 //Returns the bounding box
-	public abstract Rectangle getBoundingBox(Graphics g, 
-			ImageObserver observer, float scale, Style style);
+	public abstract Rectangle getBoundingBox(Graphics graphics, ImageObserver observer, float scale, Style style);
 
 //Draws the item
-	public abstract void draw(int x, int y, float scale, 
-			Graphics g, Style style, ImageObserver observer);
+	public abstract void draw(int x, int y, float scale, Graphics graphics, Style style, ImageObserver observer);
 }

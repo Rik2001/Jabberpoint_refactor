@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 */
 
 public class SlideViewerFrame extends JFrame {
-	private static final long serialVersionUID = 3227L;
+	private static final long SERIALVERSIONUID = 3227L;
 	
 	private static final String JABTITLE = "Jabberpoint 1.6 - OU";
 	

@@ -61,7 +61,7 @@ public class XMLParser {
 
 			NodeList slides = doc.getElementsByTagName(SLIDE);
 
-			getSlides(slides, presentation);
+			loadSlides(slides, presentation);
 		} 
 		catch (IOException iox) {
 			System.err.println(iox.toString());
@@ -74,7 +74,7 @@ public class XMLParser {
 		}	
 	}
 
-	protected void getSlides(NodeList slides, Presentation presentation){
+	protected void loadSlides(NodeList slides, Presentation presentation){
 		int max = slides.getLength();
 
 		for (int slideNumber = 0; slideNumber < max; slideNumber++) {
