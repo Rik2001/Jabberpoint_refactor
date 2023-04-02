@@ -45,50 +45,32 @@ public class MenuController extends MenuBar {
 	protected static final String LOADERR = "Load Error";
 	protected static final String SAVEERR = "Save Error";
 
-	public MenuController(Frame frame, Presentation pres) {
-		parent = frame;
-		presentation = pres;
+	public MenuController(Frame parent, Presentation presentation) {
 		MenuItem menuItem;
 		Menu fileMenu = new Menu(FILE);
 		fileMenu.add(menuItem = mkMenuItem(OPEN));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.clear();
-				Accessor xmlAccessor = new XMLAccessor();
-				try {
-					xmlAccessor.loadFile(presentation, TESTFILE);
-					presentation.setSlideNumber(0);
-				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, 
-         			LOADERR, JOptionPane.ERROR_MESSAGE);
-				}
-				parent.repaint();
+				loadPresentation(presentation, parent);
 			}
 		} );
 		fileMenu.add(menuItem = mkMenuItem(NEW));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.clear();
-				parent.repaint();
+				newPresentation(presentation, parent);
 			}
 		});
 		fileMenu.add(menuItem = mkMenuItem(SAVE));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Accessor xmlAccessor = new XMLAccessor();
-				try {
-					xmlAccessor.saveFile(presentation, SAVEFILE);
-				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, 
-							SAVEERR, JOptionPane.ERROR_MESSAGE);
-				}
+				savePresentation(presentation, parent);
 			}
 		});
 		fileMenu.addSeparator();
 		fileMenu.add(menuItem = mkMenuItem(EXIT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.exit(0);
+				exit(presentation);
 			}
 		});
 		add(fileMenu);
@@ -96,21 +78,19 @@ public class MenuController extends MenuBar {
 		viewMenu.add(menuItem = mkMenuItem(NEXT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.nextSlide();
+				nextSlide(presentation);
 			}
 		});
 		viewMenu.add(menuItem = mkMenuItem(PREV));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.prevSlide();
+				previousSlide(presentation);
 			}
 		});
 		viewMenu.add(menuItem = mkMenuItem(GOTO));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
-				int pageNumber = Integer.parseInt(pageNumberStr);
-				presentation.setSlideNumber(pageNumber - 1);
+				goToSlide(presentation);
 			}
 		});
 		add(viewMenu);
@@ -118,7 +98,7 @@ public class MenuController extends MenuBar {
 		helpMenu.add(menuItem = mkMenuItem(ABOUT));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				AboutBox.show(parent);
+				showAboutBox(parent);
 			}
 		});
 		setHelpMenu(helpMenu);		//Needed for portability (Motif, etc.).
@@ -127,5 +107,55 @@ public class MenuController extends MenuBar {
 //Creating a menu-item
 	public MenuItem mkMenuItem(String name) {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
+	}
+
+	private void loadPresentation(Presentation presentation, Frame parent){
+		presentation.clear();
+		Accessor xmlAccessor = new XMLAccessor();
+		try {
+			xmlAccessor.loadFile(presentation, TESTFILE);
+			presentation.setSlideNumber(0);
+		} catch (IOException exc) {
+			JOptionPane.showMessageDialog(parent, IOEX + exc,
+					LOADERR, JOptionPane.ERROR_MESSAGE);
+		}
+		parent.repaint();
+	}
+
+	private void newPresentation(Presentation presentation, Frame parent){
+		presentation.clear();
+		parent.repaint();
+	}
+
+	private void savePresentation(Presentation presentation, Frame parent){
+		Accessor xmlAccessor = new XMLAccessor();
+		try {
+			xmlAccessor.saveFile(presentation, SAVEFILE);
+		} catch (IOException exc) {
+			JOptionPane.showMessageDialog(parent, IOEX + exc,
+					SAVEERR, JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private void exit(Presentation presentation){
+		presentation.exit(0);
+	}
+
+	private void nextSlide(Presentation presentation){
+		presentation.nextSlide();
+	}
+
+	private void previousSlide(Presentation presentation){
+		presentation.prevSlide();
+	}
+
+	private void goToSlide(Presentation presentation){
+		String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
+		int pageNumber = Integer.parseInt(pageNumberStr);
+		presentation.setSlideNumber(pageNumber - 1);
+	}
+
+	private void showAboutBox(Frame parent){
+		AboutBox.show(parent);
 	}
 }

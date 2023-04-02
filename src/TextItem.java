@@ -61,6 +61,7 @@ public class TextItem extends SlideItem {
 		while (iterator.hasNext()) {
 			TextLayout layout = iterator.next();
 			Rectangle2D bounds = layout.getBounds();
+
 			if (bounds.getWidth() > xsize) {
 				xsize = (int) bounds.getWidth();
 			}

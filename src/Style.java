@@ -24,6 +24,13 @@ public class Style {
 	int fontSize;
 	int leading;
 
+	public Style(int indent, Color color, int points, int leading) {
+		this.indent = indent;
+		this.color = color;
+		font = new Font(FONTNAME, Font.BOLD, fontSize=points);
+		this.leading = leading;
+	}
+
 	public static void createStyles() {
 		styles = new Style[5];    
 		// De styles zijn vast ingecodeerd.
@@ -39,13 +46,6 @@ public class Style {
 			level = styles.length - 1;
 		}
 		return styles[level];
-	}
-
-	public Style(int indent, Color color, int points, int leading) {
-		this.indent = indent;
-		this.color = color;
-		font = new Font(FONTNAME, Font.BOLD, fontSize=points);
-		this.leading = leading;
 	}
 
 	public String toString() {
