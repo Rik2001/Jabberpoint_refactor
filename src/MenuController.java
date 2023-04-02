@@ -19,10 +19,6 @@ import javax.swing.JOptionPane;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 public class MenuController extends MenuBar {
-	
-	private Frame parent; //The frame, only used as parent for the Dialogs
-	private Presentation presentation; //Commands are given to the presentation
-	
 	private static final long serialVersionUID = 227L;
 	
 	protected static final String ABOUT = "About";
@@ -37,10 +33,10 @@ public class MenuController extends MenuBar {
 	protected static final String PREV = "Prev";
 	protected static final String SAVE = "Save";
 	protected static final String VIEW = "View";
-	
+
 	protected static final String TESTFILE = "testPresentation.xml";
 	protected static final String SAVEFILE = "savedPresentation.xml";
-	
+
 	protected static final String IOEX = "IO Exception: ";
 	protected static final String LOADERR = "Load Error";
 	protected static final String SAVEERR = "Save Error";
@@ -54,18 +50,21 @@ public class MenuController extends MenuBar {
 				loadPresentation(presentation, parent);
 			}
 		} );
+
 		fileMenu.add(menuItem = mkMenuItem(NEW));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				newPresentation(presentation, parent);
 			}
 		});
+
 		fileMenu.add(menuItem = mkMenuItem(SAVE));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				savePresentation(presentation, parent);
 			}
 		});
+
 		fileMenu.addSeparator();
 		fileMenu.add(menuItem = mkMenuItem(EXIT));
 		menuItem.addActionListener(new ActionListener() {
@@ -73,6 +72,7 @@ public class MenuController extends MenuBar {
 				exit(presentation);
 			}
 		});
+
 		add(fileMenu);
 		Menu viewMenu = new Menu(VIEW);
 		viewMenu.add(menuItem = mkMenuItem(NEXT));
@@ -81,18 +81,21 @@ public class MenuController extends MenuBar {
 				nextSlide(presentation);
 			}
 		});
+
 		viewMenu.add(menuItem = mkMenuItem(PREV));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				previousSlide(presentation);
 			}
 		});
+
 		viewMenu.add(menuItem = mkMenuItem(GOTO));
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				goToSlide(presentation);
 			}
 		});
+
 		add(viewMenu);
 		Menu helpMenu = new Menu(HELP);
 		helpMenu.add(menuItem = mkMenuItem(ABOUT));
@@ -101,6 +104,7 @@ public class MenuController extends MenuBar {
 				showAboutBox(parent);
 			}
 		});
+
 		setHelpMenu(helpMenu);		//Needed for portability (Motif, etc.).
 	}
 
