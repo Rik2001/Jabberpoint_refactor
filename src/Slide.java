@@ -64,14 +64,14 @@ public class Slide {
 	    int y = area.y;
 
 	    SlideItem slideItem = new TextItem(0, getTitle());
-	    Style style = Style.getStyle(slideItem.getLevel());
+	    Style style = Styles.getStyle(slideItem.getLevel());
 
 	    slideItem.draw(area.x, y, scale, graphics, style, view);
 	    y += slideItem.getBoundingBox(graphics, view, scale, style).height;
 
 	    for (int number=0; number<getSize(); number++) {
 	      slideItem = (SlideItem)getSlideItems().elementAt(number);
-	      style = Style.getStyle(slideItem.getLevel());
+	      style = Styles.getStyle(slideItem.getLevel());
 	      slideItem.draw(area.x, y, scale, graphics, style, view);
 	      y += slideItem.getBoundingBox(graphics, view, scale, style).height;
 	    }
