@@ -61,14 +61,18 @@ public class SlideViewerComponent extends JComponent {
 			return;
 		}
 
+		setGraphics(graphics);
+
+		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
+
+		slide.draw(graphics, area, this);
+	}
+
+	public void setGraphics(Graphics graphics){
 		graphics.setColor(BGCOLOR);
 		graphics.fillRect(0, 0, getSize().width, getSize().height);
 		graphics.setFont(labelFont);
 		graphics.setColor(COLOR);
 		graphics.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(), XPOS, YPOS);
-
-		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-
-		slide.draw(graphics, area, this);
 	}
 }
