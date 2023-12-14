@@ -29,7 +29,7 @@ public class JabberPoint {
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {
 			if (argv.length == 0) { //a demo presentation
-				presentation.createDemoPresentation(presentation);
+				presentation.createDemoPresentation();
 			} else {
 				new XMLParser().loadFile(presentation, argv[0]);
 			}
