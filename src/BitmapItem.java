@@ -22,8 +22,7 @@ import java.io.IOException;
 
 public class BitmapItem extends SlideItem {
   private BufferedImage bufferedImage;
-  private String imageName;
-  
+  private final String IMAGENAME;
   protected static final String FILE = "File ";
   protected static final String NOTFOUND = " not found";
 
@@ -31,18 +30,18 @@ public class BitmapItem extends SlideItem {
   	//level indicates the item-level; name indicates the name of the file with the image
 	public BitmapItem(int level, String name) {
 		super(level);
-		imageName = name;
+		IMAGENAME = name;
 		try {
-			bufferedImage = ImageIO.read(new File(imageName));
+			bufferedImage = ImageIO.read(new File(IMAGENAME));
 		}
 		catch (IOException e) {
-			System.err.println(FILE + imageName + NOTFOUND) ;
+			System.err.println(FILE + IMAGENAME + NOTFOUND) ;
 		}
 	}
 
 	//Returns the filename of the image
 	public String getName() {
-		return imageName;
+		return IMAGENAME;
 	}
 
 	//Returns the bounding box of the image
@@ -61,6 +60,6 @@ public class BitmapItem extends SlideItem {
 	}
 
 	public String toString() {
-		return "BitmapItem[" + getLevel() + "," + imageName + "]";
+		return "BitmapItem[" + getLevel() + "," + IMAGENAME + "]";
 	}
 }
