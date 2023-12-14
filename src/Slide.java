@@ -38,11 +38,6 @@ public class Slide {
 		title = newTitle;
 	}
 
-	//Create a TextItem out of a String and add the TextItem
-	public void append(int level, String message) {
-		append(new TextItem(level, message));
-	}
-
 	//Return all the SlideItems in a vector
 	public Vector<SlideItem> getSlideItems() {
 		return items;
