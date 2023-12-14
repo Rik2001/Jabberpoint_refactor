@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 public class Presentation {
-	private String presentationTitle; //The title of the presentation
+	private String showTitle; //The title of the presentation. This can't be renamed since all previously saved jaberpoint's won't be able to open
 	private ArrayList<Slide> showList = null; //An ArrayList with slides
 	private int currentSlideNumber = 0; //The number of the current slide
 	private SlideViewerComponent slideViewComponent = null; //The view component of the slides
