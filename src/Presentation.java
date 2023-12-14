@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 
 public class Presentation {
-	private String showTitle; //The title of the presentation
+	private String presentationTitle; //The title of the presentation
 	private ArrayList<Slide> showList = null; //An ArrayList with slides
 	private int currentSlideNumber = 0; //The number of the current slide
 	private SlideViewerComponent slideViewComponent = null; //The view component of the slides
