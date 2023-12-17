@@ -60,7 +60,7 @@ public class Slide {
 	    y += slideItem.getBoundingBox(graphics, view, scale, style).height;
 
 	    for (int number=0; number<getSize(); number++) {
-	      slideItem = (SlideItem)getSlideItems().elementAt(number);
+	      slideItem = getSlideItems().elementAt(number);
 	      style = Styles.getStyle(slideItem.getLevel());
 	      slideItem.draw(area.x, y, scale, graphics, style, view);
 	      y += slideItem.getBoundingBox(graphics, view, scale, style).height;

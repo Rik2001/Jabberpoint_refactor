@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /** <p>The controller for the menu</p>
  * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
@@ -154,8 +154,14 @@ public class MenuController extends MenuBar {
 	}
 
 	private void goToSlide(Presentation presentation){
-		String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
+		String pageNumberStr = JOptionPane.showInputDialog(PAGENR);
 		int pageNumber = Integer.parseInt(pageNumberStr);
+
+		//make sure user does not go to slide that doesn't exist
+		if (pageNumber <= 0 || pageNumber > presentation.getSize()){
+			JOptionPane.showMessageDialog(new JFrame(),"This slide does not exist!");
+			return;
+		}
 		presentation.setSlideNumber(pageNumber - 1);
 	}
 
