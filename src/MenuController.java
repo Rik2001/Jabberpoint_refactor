@@ -126,12 +126,12 @@ public class MenuController extends MenuBar {
 		parent.repaint();
 	}
 
-	private void newPresentation(Presentation presentation, Frame parent){
+	public void newPresentation(Presentation presentation, Frame parent){
 		presentation.clear();
 		parent.repaint();
 	}
 
-	private void savePresentation(Presentation presentation, Frame parent){
+	public void savePresentation(Presentation presentation, Frame parent){
 		XMLParser xmlParser = new XMLParser();
 		try {
 			xmlParser.saveFile(presentation, SAVEFILE);
@@ -141,19 +141,19 @@ public class MenuController extends MenuBar {
 		}
 	}
 
-	private void exit(Presentation presentation){
+	public void exit(Presentation presentation){
 		presentation.exit(0);
 	}
 
-	private void nextSlide(Presentation presentation){
+	public void nextSlide(Presentation presentation){
 		presentation.nextSlide();
 	}
 
-	private void previousSlide(Presentation presentation){
+	public void previousSlide(Presentation presentation){
 		presentation.prevSlide();
 	}
 
-	private void goToSlide(Presentation presentation){
+	public void goToSlide(Presentation presentation){
 		String pageNumberStr = JOptionPane.showInputDialog(PAGENR);
 		int pageNumber = Integer.parseInt(pageNumberStr);
 
@@ -165,7 +165,7 @@ public class MenuController extends MenuBar {
 		presentation.setSlideNumber(pageNumber - 1);
 	}
 
-	private void showAboutBox(Frame parent){
+	public void showAboutBox(Frame parent){
 		AboutBox.show(parent);
 	}
 }
