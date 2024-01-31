@@ -20,14 +20,14 @@ public class KeyController extends KeyAdapter {
 
 	public void keyPressed(KeyEvent keyEvent) {
 		switch(keyEvent.getKeyCode()) {
-			case KeyEvent.VK_PAGE_DOWN:
-			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_PAGE_UP:
+			case KeyEvent.VK_UP:
 			case KeyEvent.VK_ENTER:
 			case '+':
 				presentation.nextSlide();
 				break;
-			case KeyEvent.VK_PAGE_UP:
-			case KeyEvent.VK_UP:
+			case KeyEvent.VK_PAGE_DOWN:
+			case KeyEvent.VK_DOWN:
 			case '-':
 				presentation.prevSlide();
 				break;

@@ -23,6 +23,10 @@ public class AboutBox {
 			"Author's version available from http://www.darwinsys.com/";
 	private static final String ABOUTBOXTITLE = "About JabberPoint";
 
+	/**
+	 * this function is meant to show the aboutbox. it shows some information about the program
+	 * @param parent this is the frame in which the dialog is shown
+	 */
 	public static void show(Frame parent) {
 		JOptionPane.showMessageDialog(parent, ABOUTBOXTEXT, ABOUTBOXTITLE, JOptionPane.INFORMATION_MESSAGE);
 	}

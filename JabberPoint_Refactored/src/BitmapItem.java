@@ -26,8 +26,11 @@ public class BitmapItem extends SlideItem {
   protected static final String FILE = "File ";
   protected static final String NOTFOUND = " not found";
 
-
-  	//level indicates the item-level; name indicates the name of the file with the image
+	/**
+	 * a bitmapItem is an image which can be displayed in a presentation.
+	 * @param level indicates the item-level
+	 * @param name indicates the name of the file with the image
+	 */
 	public BitmapItem(int level, String name) {
 		super(level);
 		IMAGENAME = name;
@@ -39,7 +42,10 @@ public class BitmapItem extends SlideItem {
 		}
 	}
 
-	//Returns the filename of the image
+	/**
+	 * gets the name of the image
+	 * @return the filename of the image
+	 */
 	public String getName() {
 		return IMAGENAME;
 	}
